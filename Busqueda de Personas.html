@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BUSQUEDA DE PERSONAS</title>
+    <script src="jquery-1.12.4.min.js"></script>
+    <script src="BusquedaDePersonas.js"></script>
+    <link rel="stylesheet" href="css/estilos2.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body onload="_loadPrimerLoad();" style="background-color: black;">
+        <!--header-->
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
+            <hs id="pagetitle" class="h3 my-0 mr-md-auto font-weight-normal text-white Impact">BUSQUEDA DE PERSONAS</hs>
+            <nav class="my-2 my-md-0 mr-md-3">
+            </nav>
+            <button class="btn btn-success mr-1" onclick="_loadPagPrincipal();">Inicio</button>
+            <button class="btn btn-success ml-1 mr-1" onclick="_uploadPicture();">Subir una foto</button>
+            <button class="btn btn-success ml-1 mr-1" onclick="_loadIniciarSesion();">Iniciar sesión</button>
+            <button class="btn btn-success ml-1" onclick="_loadCrearUsuario();">Crear un Usuario</button>
+        </div>
+        <!--header-->
+        <div class="container-fluid">               
+
+            <!--contenedor principal-->
+            <div class="row justify-content-center" id="divPagPrincipal">
+                <div class="col-10 col-sm-9 col-md-6 col-lg-5 col-xl-8">
+                    <div class="row" id="listOfCols">
+                    </div>
+                </div>
+            </div>
+            <!--contenedor principal-->
+
+            <!--iniciar sesion-->
+            <div class="row justify-content-center" id="divIniciarSesion">
+                <div class="col-10 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                    <div class="card shadow-sm rounded">
+                        <div class="card-body">
+                            <h5 class="mt-3">Iniciar sesión</h5>
+                            <p class="pb-2">Ingrese su nombre de usuario y su contraseña</p>
+                            <form class="mt-4">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Nombre de usuario:</label>
+                                    <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Contraseña:</label>
+                                    <input type="text" class="form-control" id="contraseña" placeholder="Contraseña">
+                                </div>
+                                <button class="btn btn-block btn-lg bg-dark text-white mt-5 mb-3" id="loginButton" onclick="_login();">Ingresar</button>
+                            </form>                              
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--iniciar sesion-->
+                
+            <!--Crear usuario-->
+            <div class="row justify-content-center" id="divCrearunusuario">
+                <div class="col-10 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                    <div class="card shadow-sm rounded">
+                        <div class="card-body">
+                            <h6 class="mt-3">Crear un usuario </h6>
+                            <p class="pb-2">Ingrese sus Datos</p>
+                            <form class="mt-4">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Nombre de usuario:</label>
+                                    <input type="text" class="form-control" id="usuarioCrear" placeholder="Usuario">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Email:</label>
+                                    <input type="text" class="form-control" id="EmailCrear" placeholder="Email">
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Contraseña:</label>
+                                    <input type="password" class="form-control" id="contraseñaCrear" placeholder="Contraseña">
+                                </div>
+                                <button class="btn btn-block btn-lg bg-dark text-white mt-5 mb-3" id="loginButton" onclick="_crearUsuario();">Crear Usuario</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!--Crear usuario-->
+
+            <!--menu admin-->
+            <div class="row justify-content-center" id="divMenuAdmin">
+                <div class="col-10 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                    <div class="card shadow-sm rounded">
+                        <div class="card-body">
+                            <h5 class="mt-3 mb-3 text-center">Menu de administrador</h5>
+                            <button class="btn btn-block btn-md bg-danger text-white mt-2 mb-2 mr-2" id="agregarPuestoButton" onclick="_loadAgregarPuesto();">Agregar puesto</button>
+                            <button class="btn btn-block btn-md bg-danger text-white mt-2 mb-2 mr-2" id="editarPuestoButton" onclick="">Editar puesto</button>
+                            <button class="btn btn-block btn-md bg-danger text-white mt-2 mb-2 mr-2" id="editarCategoriaButton" onclick="">Editar categorias</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--menu admin-->
+            <!--agregar puesto-->
+            <div class="row justify-content-center" id="divAgregarPuesto">
+                <div class="col-10 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                    <div class="card shadow-sm rounded">
+                        <div class="card-body">
+                            <h5 class="mt-3">Formulario de empleos</h5>
+                            <p class="pb-2">Complete el formulario para añadir un empleo</p>
+                            <form class="mt-4">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Título de la propuesta:</label>
+                                    <input type="text" class="form-control" id="formTitulo" placeholder="Título">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Posición:</label>
+                                    <input type="text" class="form-control" id="formPosicion" placeholder="Posición">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Localización:</label>
+                                    <input type="text" class="form-control" id="formLocalizacion" placeholder="Localización">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Categoria:</label>
+                                    <select class="form-control" id="formCategoria">
+                                        <option value="Software">Software</option>
+                                        <option value="Multimedia">Multimedia</option>
+                                        <option value="Mecatronica">Mecatronica</option>
+                                        <option value="Redes">Redes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Descripción:</label>
+                                    <textarea class="form-control" id="formDescripcion"></textarea>
+                                </div>
+                            </form>
+                            <button class="btn btn-block btn-lg bg-dark text-white mt-5 mb-3" id="loginButton" onclick="_agregarPuesto()">Añadir puesto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--agregar puesto-->
+        </div>
+</body>
+</html>
+ 
+  
